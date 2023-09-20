@@ -7,7 +7,6 @@ import {
 import Webcam from "react-webcam";
 import { useEffect, useState, useRef, useCallback } from 'react';
 
-
 let gestureRecognizer = null
 let runningMode = "IMAGE";
 const createGestureRecognizer = async () => {
