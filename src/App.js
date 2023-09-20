@@ -26,6 +26,7 @@ createGestureRecognizer();
 function App() {
   const [imgSrc, setImgSrc] = useState(null);
   const [result, setResult] = useState(null);
+  const [select, setSelect] = useState("");
   const webcamRef = useRef(null);
   const timeoutIntervalRef = useRef(null);
 
@@ -45,7 +46,7 @@ function App() {
 
   useEffect(() => {
     if (imgSrc) {
-      console.log(imgSrc)
+      //console.log(imgSrc)
       var results = gestureRecognizer.recognize(imgSrc);
       setResult(results)
     }
@@ -53,10 +54,15 @@ function App() {
 
   useEffect(() => {
     if (result) {
-      if (result.gestures.length > 0)
-        console.log(result.gestures[0][0])
-
+      if (result.gestures.length > 0) {
+        if (result.gestures[0][0].categoryName == "1" || result.gestures[0][0].categoryName == "1_1") {
+          setSelect("you have selected one")
+        } else if (result.gestures[0][0].categoryName == "2" || result.gestures[0][0].categoryName == "2_1" || result.gestures[0][0].categoryName == "2_2" || result.gestures[0][0].categoryName == "2_3") {
+          setSelect("you have selected two")
+        }
+      }
     }
+
   }, [result])
 
   //setResult(gestureRecognizer.recognize(image));
@@ -66,7 +72,9 @@ function App() {
         <div className="container">
           <Webcam height={600} ref={webcamRef} />
         </div>
-        <button onClick={() => { }}>recognise</button>
+        <button onClick={() => { setSelect("you have selected one") }}>One</button>
+        <button onClick={() => { setSelect("you have selected two") }}>Two</button>
+        <p>{select}</p>
         <p>{(result) ? ((result.gestures.length > 0 && result.gestures[0][0].score > 0.8) ? result.gestures[0][0].categoryName : "None") : "None"}</p>
 
       </header>
