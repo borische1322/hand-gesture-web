@@ -1,3 +1,5 @@
+for reference: (https://developers.google.com/mediapipe/solutions/vision/gesture_recognizer/web_js)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
